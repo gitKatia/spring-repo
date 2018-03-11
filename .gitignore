@@ -1,0 +1,9 @@
+.DS_Store
+.settings/
+.project
+.classpath
+spring-web-app/target/
+spring-web-app/.classpath
+spring-web-app/.classpath
+spring-web-app/.project
+spring-web-app/.settings
