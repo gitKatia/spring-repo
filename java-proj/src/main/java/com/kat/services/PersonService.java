@@ -2,6 +2,7 @@ package com.kat.services;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -27,6 +28,16 @@ public class PersonService implements IPersonService {
 	@Override
 	public Person findAny(List<Person> people, Predicate<Person> predicate) {
 		return people.stream().filter(predicate).findAny().orElse(null);
+	}
+
+	@Override
+	public Map<String, Long> groupByName(List<Person> people) {
+		return people.stream().collect(Collectors.groupingBy(Person::getFirstName,Collectors.counting()));
+	}
+
+	@Override
+	public Map<String, Integer> totalAgeByName(List<Person> people) {
+		return people.stream().collect(Collectors.groupingBy(Person::getFirstName,Collectors.summingInt(Person::getAge)));
 	}
 
 	

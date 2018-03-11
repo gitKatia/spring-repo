@@ -2,6 +2,7 @@ package com.kat;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import org.springframework.context.ApplicationContext;
@@ -30,6 +31,8 @@ public class Main {
 		findAny(personService, personUtil, findGeorge);
 		System.out.println("\nFind Daniel");
 		findAny(personService, personUtil, findDaniel);
+		getOccurrenciesByName(personService, personUtil);
+		getTotalAgesByName(personService, personUtil);
 		
 
 	}
@@ -65,6 +68,26 @@ public class Main {
 			System.out.println("\nCould not found any match for the predicate.\n");
 		}
 		return person;
+	}
+	
+	public static Map<String,Long> getOccurrenciesByName(IPersonService personService, PersonUtil personUtil){
+		List<Person> people = personUtil.getPeople();
+		Map<String, Long> occurrenciesByName = personService.groupByName(people);
+		occurrenciesByName.forEach((k,v) -> {
+			System.out.print(k);
+			System.out.println(":" + v);
+		});
+		return occurrenciesByName;
+	}
+	
+	public static Map<String,Integer> getTotalAgesByName(IPersonService personService, PersonUtil personUtil){
+		List<Person> people = personUtil.getPeople();
+		Map<String, Integer> totalAgesByName = personService.totalAgeByName(people);
+		totalAgesByName.forEach((k,v) -> {
+			System.out.print(k);
+			System.out.println(":" + v);
+		});
+		return totalAgesByName;
 	}
 
 }
