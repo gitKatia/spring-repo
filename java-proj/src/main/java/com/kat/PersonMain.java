@@ -11,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.kat.model.Person;
 import com.kat.services.interfaces.IPersonService;
 
-public class Main {
+public class PersonMain {
 
 	public static void main(String[] args) {
 		
