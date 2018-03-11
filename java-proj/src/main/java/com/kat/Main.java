@@ -2,6 +2,7 @@ package com.kat;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -19,9 +20,16 @@ public class Main {
 		
 		Comparator<Person> peopleByName = (p1,p2) -> p1.getFirstName().compareTo(p2.getFirstName());
 		Comparator<Person> peopleByAge = (p1,p2) -> p1.getAge() - p2.getAge();
+		Predicate<Person> findGeorge = p-> "George".equals(p.getFirstName());
+		Predicate<Person> findDaniel = p-> "Daniel".equals(p.getFirstName());
+		
 		sortPeopleByName(personService, personUtil, peopleByName);
 		sortPeopleByAge(personService, personUtil, peopleByAge);
 		sortPeopleByAgeReversed(personService, personUtil, peopleByAge);
+		System.out.println("\nFind George");
+		findAny(personService, personUtil, findGeorge);
+		System.out.println("\nFind Daniel");
+		findAny(personService, personUtil, findDaniel);
 		
 
 	}
@@ -45,6 +53,18 @@ public class Main {
 		personService.sort(people, peopleByAge.reversed());
 		System.out.println("\nPeople sorted by age reversed:\n");
 		people.forEach(p -> System.out.println(p));
+	}
+	
+	public static Person findAny(IPersonService personService, PersonUtil personUtil, Predicate<Person> predicate){
+		List<Person> people = personUtil.getPeople();
+		Person person = personService.findAny(people, predicate);
+		if(person != null){
+			System.out.println("\nFound at least one element for the predicate!\n");
+			System.out.println(person);
+		} else {
+			System.out.println("\nCould not found any match for the predicate.\n");
+		}
+		return person;
 	}
 
 }

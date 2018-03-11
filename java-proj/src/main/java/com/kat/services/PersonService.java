@@ -24,6 +24,11 @@ public class PersonService implements IPersonService {
 		return peopleFilteredByPredicate;
 	}
 
+	@Override
+	public Person findAny(List<Person> people, Predicate<Person> predicate) {
+		return people.stream().filter(predicate).findAny().orElse(null);
+	}
+
 	
 
 }

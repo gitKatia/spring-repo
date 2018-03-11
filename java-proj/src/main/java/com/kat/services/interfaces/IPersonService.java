@@ -10,6 +10,7 @@ public interface IPersonService {
 	
 	public void sort(List<Person> people, Comparator<Person> comparator);
 	public List<Person> filter(List<Person> people,Predicate<Person> predicate);
+	public Person findAny(List<Person> people,Predicate<Person> predicate);
 	
 
 }
