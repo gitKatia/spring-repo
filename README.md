@@ -1,0 +1,1 @@
+Maven Multi-module project with Spring Framework
