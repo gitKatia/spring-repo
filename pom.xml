@@ -8,5 +8,6 @@
 	<modules>
 		<module>java-proj</module>
 		<module>spring-web-app</module>
+		<module>cmd-crud</module>
 	</modules>
 </project>

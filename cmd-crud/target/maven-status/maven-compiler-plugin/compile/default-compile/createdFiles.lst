@@ -1,0 +1,7 @@
+com/kat/model/Command.class
+com/kat/service/ServerService.class
+com/kat/service/IServerService.class
+com/kat/dao/IServerDAO.class
+com/kat/dao/ServerDAO.class
+com/kat/main/Main.class
+com/kat/model/Server.class
