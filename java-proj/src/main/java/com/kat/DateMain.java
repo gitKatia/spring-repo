@@ -1,6 +1,8 @@
 package com.kat;
 
-import java.time.format.DateTimeFormatter;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,20 +16,15 @@ public class DateMain {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 		IDateService dateService = (IDateService)context.getBean("dateService");
 		
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-		//ISO_LOCAL_DATE
-		String date = "11/03/2018";
-		printDate(dateService, date, dateTimeFormatter);
+		LocalDate localDateNow = LocalDate.now();
 		
-		//dateTimeFormatter = DateTimeFormatter.ofPattern("d-MMM-yyyy");
-		//date = "16-Aug-2016";
-		//printDate(dateService, date, dateTimeFormatter);
+	    dateService.printLocalDate(localDateNow);
+	    Instant t1 = Instant.now();
+	    int day = 24*3600;
+	    Instant t2 = t1.plusSeconds(day);
 		
+		dateService.printElapsedTime(t1, t2);
 	}
 	
-	public static void printDate(IDateService dateService, String date, DateTimeFormatter dateTimeFormatter){
-		
-		dateService.printDate(date, dateTimeFormatter);
-	}
 
 }

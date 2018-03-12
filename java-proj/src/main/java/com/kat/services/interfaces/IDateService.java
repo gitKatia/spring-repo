@@ -1,9 +1,13 @@
 package com.kat.services.interfaces;
 
-import java.time.format.DateTimeFormatter;
+import java.time.Instant;
+import java.time.LocalDate;
 
 public interface IDateService {
 	
-	public void printDate(String date, DateTimeFormatter dateTimeFormatter);
+	public void printElapsedTime(Instant t1, Instant t2);
+	public void printLocalDate(LocalDate localDate);
+	
+	
 
 }
